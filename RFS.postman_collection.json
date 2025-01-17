@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "160adcda-ae16-4605-9e40-b09bf7d0f9e0",
+		"name": "RFS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28692022"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "registerUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"dharan\",\r\n    \"password\":\"admin@123\",\r\n    \"email\":\"gangadharana01@gmail.com\",\r\n    \"role\":\"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzg4ZGUxNzMwMmZkYjhjNWI3ZGNhOGIiLCJ1c2VybmFtZSI6ImRoYXJhbiIsImlhdCI6MTczNzA1MDcwMiwiZXhwIjoxNzM3MDU0MzAyfQ.zHinWnp9Wc4eVOEAPpBWZ_LGIIk6vg1zuVU_z_-c2EE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"dharan\",\r\n    \"email\":\"gangadharana01@gmail.com\",\r\n    \"password\":\"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requestPasswordChange",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"gangadharana01@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"gangadharana01@gmail.com\",\r\n    \"otp\":202607,\r\n    \"newPassword\":\"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "candidates",
+			"item": [
+				{
+					"name": "createCandidate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzg4ZGUxNzMwMmZkYjhjNWI3ZGNhOGIiLCJ1c2VybmFtZSI6ImRoYXJhbiIsImlhdCI6MTczNzA1MDcwMiwiZXhwIjoxNzM3MDU0MzAyfQ.zHinWnp9Wc4eVOEAPpBWZ_LGIIk6vg1zuVU_z_-c2EE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "dharan",
+									"type": "text"
+								},
+								{
+									"key": "jobTitle",
+									"value": "FrontEndDeveloper",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dharan@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "+916381762799",
+									"type": "text"
+								},
+								{
+									"key": "resume",
+									"type": "file",
+									"src": "/C:/Users/gangadharan/Downloads/Resume-I6  (1).pdf"
+								},
+								{
+									"key": "state",
+									"value": "pending",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "6788de17302fdb8c5b7dca8b",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/candidates/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"candidates",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCandidates",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzg4ZGUxNzMwMmZkYjhjNWI3ZGNhOGIiLCJ1c2VybmFtZSI6ImRoYXJhbiIsImlhdCI6MTczNzA5OTY4NCwiZXhwIjoxNzM3MTAzMjg0fQ.G-IEeEaqlGddDFLcHaoHvZhGiT0WYLXrl6UZk97KffA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/candidates/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"candidates",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

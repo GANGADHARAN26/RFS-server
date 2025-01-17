@@ -135,3 +135,247 @@ Frontend Validations:
 
 Validations for forms include required fields, email format checks, file size and type checks for resumes, and more.
 
+# API Documentation
+
+## Authentication Endpoints
+
+### Register User
+**Endpoint:** `/api/auth/register`
+
+**Method:** POST
+
+**Description:** Registers a new user.
+
+**Request Body:**
+```json
+{
+  "email": "string",
+  "password": "string",
+  "username": "string",
+  "role": "string"
+}
+```
+
+**Response:**
+- Success: HTTP 201
+```json
+{
+  "success": true,
+  "message": "User has been created",
+  "accessToken": "string",
+  "refreshToken": "string"
+}
+```
+- Failure: HTTP 400 or 500
+
+---
+
+### Login User
+**Endpoint:** `/api/auth/login`
+
+**Method:** POST
+
+**Description:** Logs in an existing user.
+
+**Request Body:**
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+**Response:**
+- Success: HTTP 200
+```json
+{
+  "success": true,
+  "message": "User logged in successfully",
+  "accessToken": "string",
+  "refreshToken": "string"
+}
+```
+- Failure: HTTP 404 or 401
+
+---
+
+### Request Password Reset
+**Endpoint:** `/api/auth/forgot-password`
+
+**Method:** POST
+
+**Description:** Sends an OTP to the user's email for password reset.
+
+**Request Body:**
+```json
+{
+  "email": "string"
+}
+```
+
+**Response:**
+- Success: HTTP 200
+```json
+{
+  "success": true,
+  "message": "OTP sent to email"
+}
+```
+- Failure: HTTP 404 or 500
+
+---
+
+### Reset Password
+**Endpoint:** `/api/auth/reset-password`
+
+**Method:** POST
+
+**Description:** Resets the user's password.
+
+**Request Body:**
+```json
+{
+  "email": "string",
+  "otp": "string",
+  "newPassword": "string"
+}
+```
+
+**Response:**
+- Success: HTTP 200
+```json
+{
+  "success": true,
+  "message": "Password reset successful"
+}
+```
+- Failure: HTTP 400 or 500
+
+---
+
+## Candidate Endpoints
+
+### Create Candidate
+**Endpoint:** `/api/candidates`
+
+**Method:** POST
+
+**Description:** Creates a new candidate. Requires HR or ADMIN role.
+
+**Request Body:**
+```json
+{
+  "name": "string",
+  "jobTitle": "string",
+  "email": "string",
+  "phoneNumber": "string",
+  "state": "string" (optional),
+  "resume": "file"
+}
+```
+
+**Response:**
+- Success: HTTP 201
+```json
+{
+  "success": true,
+  "data": {
+    "_id": "string",
+    "name": "string",
+    "jobTitle": "string",
+    "email": "string",
+    "phoneNumber": "string",
+    "resumeUrl": "string",
+    "addedBy": "string"
+  }
+}
+```
+- Failure: HTTP 400 or 500
+
+---
+
+### Get All Candidates
+**Endpoint:** `/api/candidates`
+
+**Method:** GET
+
+**Description:** Fetches all candidates added by the authenticated user.
+
+**Response:**
+- Success: HTTP 200
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "string",
+      "name": "string",
+      "jobTitle": "string",
+      "email": "string",
+      "phoneNumber": "string",
+      "resumeUrl": "string",
+      "addedBy": "string"
+    }
+  ]
+}
+```
+- Failure: HTTP 500
+
+---
+
+### Update Candidate
+**Endpoint:** `/api/candidates/:id`
+
+**Method:** PUT
+
+**Description:** Updates a candidate's information. Requires HR or ADMIN role.
+
+**Request Body:**
+```json
+{
+  "name": "string",
+  "jobTitle": "string",
+  "email": "string",
+  "phoneNumber": "string",
+  "state": "string",
+  "resume": "file" (optional)
+}
+```
+
+**Response:**
+- Success: HTTP 200
+```json
+{
+  "success": true,
+  "data": {
+    "_id": "string",
+    "name": "string",
+    "jobTitle": "string",
+    "email": "string",
+    "phoneNumber": "string",
+    "resumeUrl": "string",
+    "addedBy": "string"
+  }
+}
+```
+- Failure: HTTP 400 or 500
+
+---
+
+### Delete Candidate
+**Endpoint:** `/api/candidates/:id`
+
+**Method:** DELETE
+
+**Description:** Deletes a candidate's record. Requires HR or ADMIN role.
+
+**Response:**
+- Success: HTTP 200
+```json
+{
+  "success": true,
+  "message": "Candidate deleted successfully"
+}
+```
+- Failure: HTTP 404 or 500
+
